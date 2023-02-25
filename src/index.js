@@ -23,10 +23,15 @@ function showTemprature(response) {
   let h2 = document.querySelector("#degree");
   let feel = document.querySelector("#feel");
   let dateElement = document.querySelector("#dateElement");
+  let skyElement = document.querySelector("#sky-icon");
   h1.innerHTML = city;
   h2.innerHTML = `${celiTemprature}°C`;
   feel.innerHTML = response.data.weather[0].main;
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  skyElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 let apiKey = "b35c686ba9565ba0ab254c2230937552";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&lang=en&appid=${apiKey}`;
