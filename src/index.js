@@ -25,6 +25,8 @@ function showTemprature(response) {
   h2.innerHTML = `${celiTemprature}°C`;
   let feel = document.querySelector("#feel");
   feel.innerHTML = response.data.weather[0].main;
+  let dateElement = document.querySelector("#dateElement");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 let apiKey = "b35c686ba9565ba0ab254c2230937552";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&lang=en&appid=${apiKey}`;
@@ -61,24 +63,25 @@ let current = document.querySelector("button");
 current.addEventListener("click", userPosition);
 
 // js for Date
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-let hour = now.getHours();
-if (hour < 10) {
-  hour = `0${hour}`;
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let hour = now.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let minute = now.getMinutes();
+  if (minute < 10) {
+    minute = `0${minute}`;
+  }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[now.getDay()];
+  return `${day},${hour}:${minute}`;
 }
-let minute = now.getMinutes();
-if (minute < 10) {
-  minute = `0${minute}`;
-}
-
-document.getElementById("p1").innerHTML = `${day},${hour}:${minute}`;
