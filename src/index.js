@@ -86,7 +86,6 @@ function showTemprature(response) {
   let feel = document.querySelector("#feel");
   feel.innerHTML = response.data.weather[0].main;
 }
-
 function showCity(event) {
   event.preventDefault();
   let display = document.querySelector("h1");
