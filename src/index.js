@@ -81,7 +81,7 @@ function showTemprature(response) {
   let h1 = document.querySelector("h1");
   let city = response.data.name;
   h1.innerHTML = city;
-  let h2 = document.querySelector("h2");
+  let h2 = document.querySelector("#degree");
   h2.innerHTML = `${celiTemprature}°C`;
   let feel = document.querySelector("#feel");
   feel.innerHTML = response.data.weather[0].main;
