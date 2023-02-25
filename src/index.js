@@ -20,12 +20,12 @@ function showTemprature(response) {
   let celiTemprature = Math.round(celiTemp);
   let h1 = document.querySelector("h1");
   let city = response.data.name;
-  h1.innerHTML = city;
   let h2 = document.querySelector("#degree");
-  h2.innerHTML = `${celiTemprature}°C`;
   let feel = document.querySelector("#feel");
-  feel.innerHTML = response.data.weather[0].main;
   let dateElement = document.querySelector("#dateElement");
+  h1.innerHTML = city;
+  h2.innerHTML = `${celiTemprature}°C`;
+  feel.innerHTML = response.data.weather[0].main;
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 let apiKey = "b35c686ba9565ba0ab254c2230937552";
