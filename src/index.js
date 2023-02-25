@@ -1,65 +1,3 @@
-let weather = {
-  paris: {
-    temp: 19.7,
-    humidity: 80,
-  },
-  tokyo: {
-    temp: 17.3,
-    humidity: 50,
-  },
-  lisbon: {
-    temp: 30.2,
-    humidity: 20,
-  },
-  "san francisco": {
-    temp: 20.9,
-    humidity: 100,
-  },
-  oslo: {
-    temp: -5,
-    humidity: 20,
-  },
-};
-
-// let city = prompt("Enter a city");
-// city = city.toLocaleLowerCase().trim();
-// if (weather[city] !== undefined) {
-//   let temprature = weather[city].temp;
-//   temprature = Math.round(temprature);
-//   let humidity = weather[city].humidity;
-//   humidity = Math.round(humidity);
-//   alert(
-//     `It is currently ${temprature} °C in ${city} with a humidity of ${humidity}%`
-//   );
-// } else {
-//   alert(
-//     `Sorry, we don't know the weather for ${city}, try going to https://www.google.com/search?q=weather+${city}`
-//   );
-// }
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-let hour = now.getHours();
-let minute = now.getMinutes();
-document.getElementById("p1").innerHTML = `${day},${hour}:${minute}`;
-
-// function showCity(event) {
-//   event.preventDefault();
-//   let display = document.querySelector("h1");
-//   let cityInput = document.querySelector("#inpt-srch");
-//   display.innerHTML = `${cityInput.value}`;
-// }
-// let place = document.querySelector("#srch-frm");
-// place.addEventListener("submit", showCity);
-
 // function toFarenheit(event) {
 //   event.preventDefault();
 //   let farenDeg = document.querySelector("h2");
@@ -75,6 +13,8 @@ document.getElementById("p1").innerHTML = `${day},${hour}:${minute}`;
 // }
 // let celic = document.querySelector("#celi");
 // celic.addEventListener("click", toCeli);
+
+// temprature Function
 function showTemprature(response) {
   let celiTemp = response.data.main.temp;
   let celiTemprature = Math.round(celiTemp);
@@ -86,6 +26,11 @@ function showTemprature(response) {
   let feel = document.querySelector("#feel");
   feel.innerHTML = response.data.weather[0].main;
 }
+let apiKey = "b35c686ba9565ba0ab254c2230937552";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&lang=en&appid=${apiKey}`;
+axios.get(apiUrl).then(showTemprature);
+
+// location display api call
 function showCity(event) {
   event.preventDefault();
   let display = document.querySelector("h1");
@@ -98,6 +43,7 @@ function showCity(event) {
 let place = document.querySelector("#srch-frm");
 place.addEventListener("submit", showCity);
 
+// current location api call
 function searchLocation(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -113,3 +59,26 @@ function userPosition(event) {
 }
 let current = document.querySelector("button");
 current.addEventListener("click", userPosition);
+
+// js for Date
+let now = new Date();
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let day = days[now.getDay()];
+let hour = now.getHours();
+if (hour < 10) {
+  hour = `0${hour}`;
+}
+let minute = now.getMinutes();
+if (minute < 10) {
+  minute = `0${minute}`;
+}
+
+document.getElementById("p1").innerHTML = `${day},${hour}:${minute}`;
