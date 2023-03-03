@@ -22,6 +22,30 @@ function formatDate(timestamp) {
   return `${day},${hour}:${minute}`;
 }
 
+//forecast display function
+function displayforecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  let forecastHTML = `<div class="row"> `;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col">
+              <i class="fa-solid fa-sun"></i>
+              <div class="forecast-date">
+              ${day}
+              </div>
+              <div class="weather-forecast-temperatures" >
+                  <span class="weather-forecast-temperature-max"> 18° </span>
+                  <span class="weather-forecast-temperature-min"> 12° </span>
+                </div>
+            </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // temprature Function
 function showTemprature(response) {
   let h1 = document.querySelector("h1");
@@ -43,6 +67,7 @@ function showTemprature(response) {
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   skyElement.setAttribute("alt", response.data.weather[0].description);
+  displayforecast();
 }
 let apiKey = "b35c686ba9565ba0ab254c2230937552";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&lang=en&appid=${apiKey}`;
