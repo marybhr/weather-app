@@ -92,6 +92,7 @@ function toFarenheit(event) {
 function toCelsius(event) {
   event.preventDefault();
   celi.classList.add("active");
+  far.classList.remove("active");
   let celiDeg = document.querySelector("#degree");
   degree.innerHTML = Math.round(celiTemp);
 }

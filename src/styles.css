@@ -92,13 +92,12 @@ footer {
 
 #celi,
 #far {
-  cursor: pointer;
-  /* top: -30px; */
+  text-decoration: none;
 }
-#deg {
+/* #deg {
   font-size: 20px;
   font-weight: 600;
-}
+} */
 #button-addon3 {
   padding: 8px;
   cursor: pointer;
